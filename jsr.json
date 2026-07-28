@@ -1,0 +1,8 @@
+{
+  "name": "@barebase/cli",
+  "version": "1.0.0",
+  "exports": "./mod.ts",
+  "publish": {
+    "include": ["mod.ts", "README.md", "LICENSE"]
+  }
+}
