@@ -2,3 +2,4 @@ node_modules/
 python/dist/
 python/*.egg-info/
 *.tgz
+rust/target/
