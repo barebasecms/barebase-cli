@@ -1,0 +1,35 @@
+{
+  "name": "barebasecms",
+  "version": "1.0.0",
+  "description": "Everything your backend needs. Nothing it does not. Installer and launcher for BareBase - the zero-dependency, drop-in Directus and Strapi replacement.",
+  "keywords": [
+    "headless-cms",
+    "cms",
+    "directus",
+    "strapi",
+    "backend",
+    "clickhouse",
+    "mcp",
+    "self-hosted",
+    "api"
+  ],
+  "homepage": "https://barebase.io",
+  "bugs": "https://github.com/barebaseio/barebase-cli/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barebaseio/barebase-cli.git"
+  },
+  "license": "MIT",
+  "author": "BareBase",
+  "type": "module",
+  "bin": {
+    "barebase": "bin/barebase.mjs"
+  },
+  "files": [
+    "bin/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

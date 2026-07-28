@@ -1,0 +1,55 @@
+name: release
+
+# One GitHub Release publishes the `barebase` package to both npm and PyPI.
+on:
+  release:
+    types: [published]
+
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+      - name: Sync version from tag
+        run: |
+          V="${GITHUB_REF_NAME#v}"
+          node -e "const f='package.json',p=require('./'+f);p.version=process.env.V;require('fs').writeFileSync(f,JSON.stringify(p,null,2)+'\n')"
+        env:
+          V: ${{ github.ref_name }}
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  pypi:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Sync version from tag
+        run: |
+          V="${GITHUB_REF_NAME#v}"
+          python - <<PY
+          import re, pathlib
+          p = pathlib.Path("pyproject.toml")
+          p.write_text(re.sub(r'version = "[^"]+"', f'version = "${V}"', p.read_text(), count=1))
+          i = pathlib.Path("barebase/__init__.py")
+          i.write_text(f'__version__ = "${V}"\n')
+          PY
+      - run: pip install build twine
+      - run: python -m build
+      - run: twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
