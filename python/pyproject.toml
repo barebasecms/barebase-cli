@@ -20,8 +20,8 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://barebase.io"
-Repository = "https://github.com/barebaseio/barebase-cli"
-Issues = "https://github.com/barebaseio/barebase-cli/issues"
+Repository = "https://github.com/barebasecms/barebase-cli"
+Issues = "https://github.com/barebasecms/barebase-cli/issues"
 
 [project.scripts]
 barebase = "barebase.cli:main"

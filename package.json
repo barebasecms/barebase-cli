@@ -14,10 +14,10 @@
     "api"
   ],
   "homepage": "https://barebase.io",
-  "bugs": "https://github.com/barebaseio/barebase-cli/issues",
+  "bugs": "https://github.com/barebasecms/barebase-cli/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/barebaseio/barebase-cli.git"
+    "url": "git+https://github.com/barebasecms/barebase-cli.git"
   },
   "license": "MIT",
   "author": "BareBase",
